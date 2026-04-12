@@ -1,0 +1,315 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+
+    --primary: 0 0% 15%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 15%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 15%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --warning: 0 0% 45%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 100%;
+    --ring: 0 0% 15%;
+
+    --radius: 0.375rem;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 95%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 0 0% 95%;
+    --primary-foreground: 0 0% 5%;
+
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 95%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .assessment-container {
+    @apply min-h-screen flex flex-col px-4 py-8 md:px-8;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .assessment-header {
+    @apply mb-6;
+  }
+
+  .emporium-title {
+    @apply text-lg font-medium mb-4;
+    color: hsl(var(--foreground));
+  }
+
+  .assessment-main {
+    @apply flex-1 flex flex-col gap-6;
+  }
+
+  .assessment-footer {
+    @apply mt-6 pt-4 border-t border-border flex justify-end;
+  }
+
+  .scene-display {
+    @apply space-y-3;
+  }
+
+  .scene-number {
+    @apply text-sm font-medium;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .prompt-text {
+    @apply text-base leading-relaxed;
+    color: hsl(var(--foreground));
+  }
+
+  .response-input-container {
+    @apply mt-3;
+  }
+
+  .response-textarea {
+    @apply w-full p-3 text-base leading-relaxed resize-none rounded-md transition-colors;
+    background: hsl(var(--input));
+    border: 1px solid hsl(var(--border));
+    color: hsl(var(--foreground));
+  }
+
+  .response-textarea::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .response-textarea:focus {
+    outline: none;
+    border-color: hsl(var(--foreground));
+  }
+
+  .character-counter {
+    @apply text-xs;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .text-warning {
+    color: hsl(var(--destructive));
+  }
+
+  .progress-container {
+    @apply w-full;
+  }
+
+  .progress-track {
+    @apply w-full h-1 rounded-full overflow-hidden;
+    background: hsl(var(--muted));
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-300;
+    background: hsl(var(--foreground));
+  }
+
+  .next-button {
+    @apply px-6 py-2 text-sm font-medium transition-colors;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    border-radius: var(--radius);
+  }
+
+  .next-button:hover {
+    opacity: 0.9;
+  }
+
+  .completion-screen {
+    @apply min-h-screen flex flex-col items-center justify-center text-center px-4;
+  }
+
+  .completion-icon {
+    @apply text-4xl mb-4;
+    color: hsl(var(--foreground));
+  }
+
+  .completion-title {
+    @apply text-xl font-medium mb-2;
+    color: hsl(var(--foreground));
+  }
+
+  .completion-subtitle {
+    @apply text-sm;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Results screen */
+  .results-container {
+    @apply min-h-screen flex flex-col px-4 py-8 md:px-8;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .results-header {
+    @apply text-center mb-8;
+  }
+
+  .results-top-types {
+    @apply space-y-4 mb-8;
+  }
+
+  .top-type-card {
+    @apply p-4 rounded-md;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .top-type-rank {
+    @apply text-xs font-medium mb-1;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .top-type-info {
+    @apply flex items-center gap-3;
+  }
+
+  .top-type-name {
+    @apply text-base font-medium whitespace-nowrap;
+    color: hsl(var(--foreground));
+    min-width: 100px;
+  }
+
+  .top-type-bar-container {
+    @apply flex-1 h-2 rounded-full overflow-hidden;
+    background: hsl(var(--muted));
+  }
+
+  .top-type-bar {
+    @apply h-full rounded-full transition-all duration-700;
+    background: hsl(var(--foreground));
+  }
+
+  .top-type-pct {
+    @apply text-sm font-medium whitespace-nowrap;
+    color: hsl(var(--foreground));
+    min-width: 48px;
+    text-align: right;
+  }
+
+  .top-type-description {
+    @apply text-xs mt-2 leading-relaxed;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .top-type-quotes {
+    @apply mt-3 space-y-2;
+  }
+
+  .type-quote {
+    @apply text-xs italic pl-3;
+    color: hsl(var(--muted-foreground));
+    border-left: 2px solid hsl(var(--border));
+  }
+
+  .quote-rationale {
+    @apply not-italic block mt-1 text-xs;
+    color: hsl(var(--muted-foreground) / 0.8);
+  }
+
+  .quote-scene {
+    @apply not-italic block mt-0.5;
+    font-size: 0.65rem;
+    color: hsl(var(--muted-foreground) / 0.7);
+  }
+
+  .results-breakdown {
+    @apply pt-4;
+    border-top: 1px solid hsl(var(--border));
+  }
+
+  .breakdown-title {
+    @apply text-sm font-medium mb-3;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .breakdown-list {
+    @apply space-y-2;
+  }
+
+  .breakdown-row {
+    @apply flex items-center gap-3;
+  }
+
+  .breakdown-type {
+    @apply text-sm;
+    color: hsl(var(--foreground));
+    min-width: 90px;
+  }
+
+  .breakdown-bar-container {
+    @apply flex-1 h-1.5 rounded-full overflow-hidden;
+    background: hsl(var(--muted));
+  }
+
+  .breakdown-bar {
+    @apply h-full rounded-full transition-all duration-500;
+    background: hsl(var(--foreground) / 0.6);
+  }
+
+  .breakdown-pct {
+    @apply text-xs;
+    color: hsl(var(--muted-foreground));
+    min-width: 40px;
+    text-align: right;
+  }
+}
