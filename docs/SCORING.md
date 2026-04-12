@@ -1,4 +1,4 @@
-# Scoring Engine — Deterministic D&D Player-Type Classification
+# Scoring Engine - Deterministic D&D Player-Type Classification
 
 A pure-function, deterministic scoring engine that transforms LLM-inferred behavioral axis signals into eight player-type percentages summing to exactly 100.
 
@@ -83,7 +83,7 @@ The scoring engine classifies D&D players into eight archetypes (Actor, Explorer
 |------------|--------|
 | Scoring engine latency (excluding LLM) | < 1 ms per session |
 | LLM + scoring end-to-end (p95) | < 15 s |
-| Determinism | 100% — byte-identical output for identical input |
+| Determinism | 100% - byte-identical output for identical input |
 | Percentage sum accuracy | |Σ − 100| < 0.01 |
 | No NaN, Infinity, or negative percentages | 100% |
 | Per-scene cap enforcement | 100% of scenes ≤ 8.0 total, ≤ 4.0 per type |
@@ -878,10 +878,10 @@ CREATE INDEX idx_results_session_id ON public.results (session_id);
 | Column | Type | Description |
 |--------|------|-------------|
 | `session_id` | UUID PK | References the assessed session |
-| `raw_scores` | JSONB | `{ "Actor": 3.75, "Explorer": 2.0, ... }` — accumulated post-cap sums |
-| `normalized_scores` | JSONB | `{ "Actor": 0.75, ... }` — bias-corrected scores |
-| `percentages` | JSONB | `{ "Actor": 12.39, ... }` — final user-facing percentages |
-| `per_scene_details` | JSONB | `{ "perScene": [...], "inference": [...] }` — full audit trace including LLM output |
+| `raw_scores` | JSONB | `{ "Actor": 3.75, "Explorer": 2.0, ... }` - accumulated post-cap sums |
+| `normalized_scores` | JSONB | `{ "Actor": 0.75, ... }` - bias-corrected scores |
+| `percentages` | JSONB | `{ "Actor": 12.39, ... }` - final user-facing percentages |
+| `per_scene_details` | JSONB | `{ "perScene": [...], "inference": [...] }` - full audit trace including LLM output |
 | `computed_at` | TIMESTAMPTZ | When scoring was performed |
 
 ### 13.3 Audit Trace Structure
@@ -944,7 +944,7 @@ WHERE computed_at < now() - interval '90 days';
 
 ## 14. API Contract
 
-### 14.1 POST — Score a Session
+### 14.1 POST - Score a Session
 
 **Endpoint**: `POST /functions/v1/score-session` (via `supabase.functions.invoke('score-session', ...)`)
 
@@ -1105,7 +1105,7 @@ Output validation failed: Percentages sum to 99.5, not 100
 score-session error: Error: OPENAI_API_KEY not configured
 ```
 
-### 16.3 Metrics (Optional — Prometheus-compatible names)
+### 16.3 Metrics (Optional - Prometheus-compatible names)
 
 ```
 score_session_duration_seconds{status="200"}         # histogram
@@ -1254,7 +1254,7 @@ WHERE session_id = 'REPLACE_WITH_SESSION_ID';
 ### 20.1 Scoring Logic Change Checklist
 
 1. Modify `src/lib/scoring/` (source of truth)
-2. Run `npx vitest run` — all tests must pass
+2. Run `npx vitest run` - all tests must pass
 3. Port changes to `supabase/functions/score-session/scoring.ts` (Deno)
 4. Verify both files are in sync (manual diff)
 5. Consider adding `score_version` column if output semantics change
@@ -1300,12 +1300,12 @@ ALTER TABLE public.results ADD COLUMN IF NOT EXISTS score_version TEXT DEFAULT '
 ```
 
 This dataset includes:
-- Empty scene (scene 10) — edge case
-- High combat scenes (2, 6, 11) — tests Slayer/Instigator clustering
-- Analytical scenes (4, 8) — tests Thinker/PowerGamer
-- Narrative/character scenes (5, 9, 12) — tests Actor/Storyteller
-- Mixed signals (scene 6: A3=2.0, A6=1.0, A7=0.5, A9=2.0) — tests cap enforcement
-- Weak signal (scene 9: A1=0.5) — tests half-value propagation
+- Empty scene (scene 10) - edge case
+- High combat scenes (2, 6, 11) - tests Slayer/Instigator clustering
+- Analytical scenes (4, 8) - tests Thinker/PowerGamer
+- Narrative/character scenes (5, 9, 12) - tests Actor/Storyteller
+- Mixed signals (scene 6: A3=2.0, A6=1.0, A7=0.5, A9=2.0) - tests cap enforcement
+- Weak signal (scene 9: A1=0.5) - tests half-value propagation
 
 ### 21.2 End-to-End Flow
 
@@ -1350,8 +1350,8 @@ See [Section 2](#2-terminology-and-glossary).
 ### 22.2 References
 
 - Robin Laws' player types taxonomy (original D&D player classification framework)
-- "Platt scaling" — John Platt, Probabilistic Outputs for Support Vector Machines (1999)
-- "Isotonic regression" — standard non-parametric calibration method
+- "Platt scaling" - John Platt, Probabilistic Outputs for Support Vector Machines (1999)
+- "Isotonic regression" - standard non-parametric calibration method
 - IEEE 754 floating-point arithmetic standard
 
 ### 22.3 Weight Matrix (tabular)
