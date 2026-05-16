@@ -44,7 +44,6 @@ Your words reveal your playstyle, not your multiple-choice answers.
 The scoring engine is fully deterministic - identical responses always produce identical results. Archetype percentages are calculated across ten behavioral axes and always sum to exactly 100%.
 
 
-
 ## Screenshots
 
 <p align="center">
@@ -69,9 +68,13 @@ The scoring engine is fully deterministic - identical responses always produce i
 <br />
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/b221b279-f449-4c33-a45c-c052b09c3e3b" alt="Archetype Results 1" width="720" />
-  <img src="https://github.com/user-attachments/assets/c5d41302-3110-4bbd-a313-b2a7b14aece7" alt="Archetype Results 2" width="720" />
+  <img src="https://github.com/user-attachments/assets/b221b279-f449-4c33-a45c-c052b09c3e3b" alt="Archetype Results 1" width="700" />
 </p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c5d41302-3110-4bbd-a313-b2a7b14aece7" alt="Archetype Results 2" width="700" />
+</p>
+
 <p align="center"><em>Your Archetype Breakdown</em></p>
 
 ## Features
